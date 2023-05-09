@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "../components/Login";
 import { FavsForm } from "../components/FavsForm";
+import { ComponentTest } from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/favs",
     element: <FavsForm />,
+  },
+  {
+    path: "/component-test",
+    element: <ComponentTest />,
   },
 ]);
 

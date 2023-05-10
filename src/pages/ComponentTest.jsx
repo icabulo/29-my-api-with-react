@@ -1,4 +1,10 @@
+import { EditItem } from "../components/EditItem";
+
 function ComponentTest() {
-  return <div>This page will load a component test</div>;
+  return (
+    <div>
+      <EditItem />
+    </div>
+  );
 }
 export default ComponentTest;

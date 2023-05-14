@@ -1,0 +1,31 @@
+.items-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.item {
+  padding: 0.8rem;
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  gap: 10px;
+  width: 33%;
+
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__header {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}

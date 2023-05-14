@@ -4,6 +4,7 @@ import { EditList } from "../EditList";
 import { userLists } from "../../mockData/userData";
 import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
+import "./favs-list.scss";
 
 const FavsList = () => {
   const onChange = (key) => {
@@ -27,12 +28,10 @@ const FavsList = () => {
   ));
 
   return (
-    <>
+    <div className="my-lists">
       <Divider orientation="left">My List Of Favorites</Divider>
-      <Collapse defaultActiveKey={["1"]} onChange={onChange}>
-        {myPanelLists}
-      </Collapse>
-    </>
+      <Collapse onChange={onChange}>{myPanelLists}</Collapse>
+    </div>
   );
 };
 export default FavsList;

@@ -14,8 +14,12 @@ function EditList() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  const preventPropagation = (event) => {
+    // If you don't want click extra trigger collapse, you can prevent this:
+    event.stopPropagation();
+  };
   return (
-    <>
+    <div onClick={preventPropagation}>
       <Button type="primary" onClick={showModal} icon={<FormOutlined />}>
         Edit
       </Button>
@@ -27,7 +31,7 @@ function EditList() {
       >
         <ListForm />
       </Modal>
-    </>
+    </div>
   );
 }
 export default EditList;

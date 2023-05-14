@@ -1,12 +1,11 @@
-import { EditItem } from "../components/EditItem";
-import { EditList } from "../components/EditList";
 import { FavsList } from "../components/FavsList";
+import { SearchList } from "../components/SearchList";
+SearchList;
 
 function ComponentTest() {
   return (
     <div>
-      <EditItem />
-      <EditList />
+      <SearchList />
       <FavsList />
     </div>
   );

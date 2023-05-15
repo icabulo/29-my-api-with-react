@@ -1,4 +1,3 @@
-import { SettingOutlined } from "@ant-design/icons";
 import { Collapse, Divider, Space } from "antd";
 import { EditList } from "../EditList";
 import { userLists } from "../../mockData/userData";
@@ -7,21 +6,18 @@ const { Panel } = Collapse;
 import "./favs-list.scss";
 import { CreateList } from "../CreateList";
 import { CreateItem } from "../CreateItem";
+import { DeleteList } from "../DeleteList";
 
 const FavsList = () => {
   const onChange = (key) => {
     console.log(key);
   };
-  const preventPropagation = (event) => {
-    // If you don't want click extra trigger collapse, you can prevent this:
-    event.stopPropagation();
-  };
+
   const genExtra = () => (
     <div className="panel-btns">
       <Space direction="horizontal">
-        {/* <SettingOutlined onClick={preventPropagation} /> */}
         <EditList />
-        {/* <EditList /> */}
+        <DeleteList />
       </Space>
     </div>
   );

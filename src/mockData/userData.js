@@ -41,4 +41,9 @@ export const userLists = [
       },
     ],
   },
+  {
+    name: "Empty list",
+    idlist: 2,
+    items: [],
+  },
 ];

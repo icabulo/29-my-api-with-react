@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, Tooltip } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { ItemForm } from "../ItemForm";
@@ -16,14 +16,16 @@ function EditItem() {
   };
   return (
     <>
-      <Button
-        type="primary"
-        onClick={showModal}
-        icon={<FormOutlined />}
-        size="small"
-      >
-        Edit item
-      </Button>
+      <Tooltip title="Edit Item">
+        <Button
+          type="primary"
+          onClick={showModal}
+          icon={<FormOutlined style={{ fontSize: "0.7rem" }} />}
+          size="small"
+          shape="circle"
+        />
+      </Tooltip>
+
       <Modal
         title="Edit this item"
         open={isModalOpen}

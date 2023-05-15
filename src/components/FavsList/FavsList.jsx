@@ -6,6 +6,7 @@ import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
 import "./favs-list.scss";
 import { CreateList } from "../CreateList";
+import { CreateItem } from "../CreateItem";
 
 const FavsList = () => {
   const onChange = (key) => {
@@ -25,20 +26,30 @@ const FavsList = () => {
     </div>
   );
 
-  const myPanelLists = userLists.map((list) => (
-    <Panel key={list.name} header={list.name} extra={genExtra()}>
-      <ListItems itemsArray={list.items} />
-    </Panel>
-  ));
+  let myPanelLists = [];
+  if (userLists.length > 0) {
+    myPanelLists = userLists.map((list) => (
+      <Panel key={list.name} header={list.name} extra={genExtra()}>
+        <Space direction="vertical">
+          <ListItems itemsArray={list.items} />
+          <CreateItem />
+        </Space>
+      </Panel>
+    ));
+  }
 
   return (
     <div className="my-lists">
       <Divider orientation="left">My List Of Favorites</Divider>
       <Space direction="vertical">
         <CreateList />
-        <Collapse onChange={onChange} size="large">
-          {myPanelLists}
-        </Collapse>
+        {myPanelLists.length > 0 ? (
+          <Collapse onChange={onChange} size="large">
+            {myPanelLists}
+          </Collapse>
+        ) : (
+          <h2>Create an new list</h2>
+        )}
       </Space>
     </div>
   );

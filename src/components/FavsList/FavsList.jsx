@@ -1,10 +1,11 @@
 import { SettingOutlined } from "@ant-design/icons";
-import { Collapse, Divider } from "antd";
+import { Collapse, Divider, Space } from "antd";
 import { EditList } from "../EditList";
 import { userLists } from "../../mockData/userData";
 import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
 import "./favs-list.scss";
+import { CreateList } from "../CreateList";
 
 const FavsList = () => {
   const onChange = (key) => {
@@ -15,10 +16,13 @@ const FavsList = () => {
     event.stopPropagation();
   };
   const genExtra = () => (
-    <>
-      <SettingOutlined onClick={preventPropagation} />
-      <EditList />
-    </>
+    <div className="panel-btns">
+      <Space direction="horizontal">
+        {/* <SettingOutlined onClick={preventPropagation} /> */}
+        <EditList />
+        {/* <EditList /> */}
+      </Space>
+    </div>
   );
 
   const myPanelLists = userLists.map((list) => (
@@ -30,7 +34,12 @@ const FavsList = () => {
   return (
     <div className="my-lists">
       <Divider orientation="left">My List Of Favorites</Divider>
-      <Collapse onChange={onChange}>{myPanelLists}</Collapse>
+      <Space direction="vertical">
+        <CreateList />
+        <Collapse onChange={onChange} size="large">
+          {myPanelLists}
+        </Collapse>
+      </Space>
     </div>
   );
 };

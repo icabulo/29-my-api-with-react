@@ -16,7 +16,12 @@ function EditItem() {
   };
   return (
     <>
-      <Button type="primary" onClick={showModal} icon={<FormOutlined />}>
+      <Button
+        type="primary"
+        onClick={showModal}
+        icon={<FormOutlined />}
+        size="small"
+      >
         Edit item
       </Button>
       <Modal

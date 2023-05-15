@@ -1,9 +1,10 @@
-import { Button, Modal } from "antd";
-import { FormOutlined } from "@ant-design/icons";
+import { Button, Modal, Divider } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { ListForm } from "../ListForm";
+import { ItemForm } from "../ItemForm";
 
-function EditList() {
+function CreateList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -18,25 +19,31 @@ function EditList() {
     // If you don't want click extra trigger collapse, you can prevent this:
     event.stopPropagation();
   };
+
   return (
     <div onClick={preventPropagation}>
       <Button
         type="primary"
         onClick={showModal}
-        icon={<FormOutlined />}
-        size="small"
+        icon={<PlusOutlined style={{ fontSize: "1rem" }} />}
+        shape="round"
+        size="default"
+        style={{ background: "#00b96b" }}
       >
-        Edit
+        Create a list
       </Button>
       <Modal
-        title="List name"
+        title="NEW LIST"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
+        <Divider orientation="right">List</Divider>
         <ListForm />
+        <Divider orientation="right">Item Details</Divider>
+        <ItemForm />
       </Modal>
     </div>
   );
 }
-export default EditList;
+export default CreateList;

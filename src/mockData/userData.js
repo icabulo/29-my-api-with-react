@@ -13,6 +13,21 @@ export const userLists = [
         description: "Everyday I practice 15 minutes",
         link: "https://youtu.be/w4a2ge9N31E",
       },
+      {
+        title: "playing guitar",
+        description: "Everyday I practice 15 minutes",
+        link: "https://youtu.be/w4a2ge9N31E",
+      },
+      {
+        title: "playing guitar",
+        description: "Everyday I practice 15 minutes",
+        link: "https://youtu.be/w4a2ge9N31E",
+      },
+      {
+        title: "playing guitar",
+        description: "Everyday I practice 15 minutes",
+        link: "https://youtu.be/w4a2ge9N31E",
+      },
     ],
   },
   {

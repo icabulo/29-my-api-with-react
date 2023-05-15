@@ -1,6 +1,5 @@
 import { FavsList } from "../components/FavsList";
 import { SearchList } from "../components/SearchList";
-SearchList;
 
 function ComponentTest() {
   return (

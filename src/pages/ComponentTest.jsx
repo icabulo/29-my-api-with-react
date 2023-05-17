@@ -1,4 +1,10 @@
+import { InvalidUser } from "../components/InvalidUser";
+
 function ComponentTest() {
-  return <div>This page will load a component test</div>;
+  return (
+    <div>
+      <InvalidUser />
+    </div>
+  );
 }
 export default ComponentTest;

@@ -1,11 +1,9 @@
-import { FavsList } from "../components/FavsList";
-import { SearchList } from "../components/SearchList";
+import { InvalidUser } from "../components/InvalidUser";
 
 function ComponentTest() {
   return (
     <div>
-      <SearchList />
-      <FavsList />
+      <InvalidUser />
     </div>
   );
 }

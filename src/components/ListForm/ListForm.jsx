@@ -1,9 +1,11 @@
 import { UnorderedListOutlined } from "@ant-design/icons";
-import { Input } from "antd";
+import { Input, Form } from "antd";
 
 const ListForm = () => (
   <>
-    <Input placeholder="Name" prefix={<UnorderedListOutlined />} />
+    <Form.Item name="name" label="Name" required>
+      <Input placeholder="Name" prefix={<UnorderedListOutlined />} />
+    </Form.Item>
   </>
 );
 export default ListForm;

@@ -1,10 +1,11 @@
-import { Button, Modal, Divider } from "antd";
+import { Button, Modal, Divider, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { ListForm } from "../ListForm";
 import { ItemForm } from "../ItemForm";
+import PropTypes from "prop-types";
 
-function CreateList() {
+function CreateList({ monitorLists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -18,6 +19,58 @@ function CreateList() {
   const preventPropagation = (event) => {
     // If you don't want click extra trigger collapse, you can prevent this:
     event.stopPropagation();
+  };
+
+  const { token: tokenLS } = JSON.parse(localStorage.getItem("user"));
+  console.log("Token got from LS", tokenLS);
+  const newList = async (body, token) => {
+    try {
+      const request = await fetch(`http://localhost:5000/api/favs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      const data = await request.json();
+      if (data) {
+        console.log("NEW LIST CREATED!!");
+      }
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const newItem = async (body, token, id) => {
+    try {
+      const request = await fetch(`http://localhost:5000/item/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      const data = await request.json();
+      if (data) {
+        console.log("NEW ITEM CREATED!!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (values) => {
+    console.log("handleSubmit...", values);
+    const { name, title, description, link } = values;
+    const listBody = { name, user_iduser: 1 };
+    const itemBody = { title, description, link };
+    const currentList = await newList(listBody, tokenLS);
+    const { idlist } = currentList;
+    await newItem(itemBody, tokenLS, idlist);
+    monitorLists();
   };
 
   return (
@@ -38,12 +91,22 @@ function CreateList() {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Divider orientation="right">List</Divider>
-        <ListForm />
-        <Divider orientation="right">Item Details</Divider>
-        <ItemForm />
+        <Form onFinish={handleSubmit}>
+          <Divider orientation="right">List</Divider>
+          <ListForm />
+          <Divider orientation="right">Item Details</Divider>
+          <ItemForm />
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form>
       </Modal>
     </div>
   );
 }
+
+CreateList.propTypes = {
+  monitorLists: PropTypes.func,
+};
+
 export default CreateList;

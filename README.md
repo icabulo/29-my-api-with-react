@@ -17,3 +17,5 @@ Es la ruta por defecto en caso de que el usuario no haya iniciado sesión, debe 
 Esta ruta muestra los favoritos y permite la realización del CRUD de los mismos. De manera que se consuman todos los endpoints creados en el API. Además esta ruta debe validar si el lusuario está autenticado para poder mostrar la interfaz del CRUD, sino, debe redirigir a la ruta de login.
 
 2. Desplegar en netlify.
+
+Explore this app on [Netlyfi](https://main--bespoke-piroshki-cc33ec.netlify.app/)

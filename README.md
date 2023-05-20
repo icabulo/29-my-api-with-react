@@ -18,4 +18,4 @@ Esta ruta muestra los favoritos y permite la realización del CRUD de los mismos
 
 2. Desplegar en netlify.
 
-Explore this app on [Netlyfi](https://main--bespoke-piroshki-cc33ec.netlify.app/)
+Explore this app on [Netlyfi](https://bespoke-piroshki-cc33ec.netlify.app/)

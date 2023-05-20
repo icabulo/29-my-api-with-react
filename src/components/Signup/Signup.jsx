@@ -21,7 +21,7 @@ function Signup() {
   const handleSubmit = async (values) => {
     const body = values;
     try {
-      const request = await fetch(`${API_url}user/signup`, {
+      const request = await fetch(`${API_url}/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

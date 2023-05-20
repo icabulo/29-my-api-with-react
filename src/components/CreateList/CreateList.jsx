@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ListForm } from "../ListForm";
 import { ItemForm } from "../ItemForm";
 import PropTypes from "prop-types";
+import { API_url } from "../../../API_URL";
 
 function CreateList({ monitorLists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,7 @@ function CreateList({ monitorLists }) {
   const { token: tokenLS } = JSON.parse(localStorage.getItem("user"));
   const newList = async (body, token) => {
     try {
-      const request = await fetch(`http://localhost:5000/api/favs`, {
+      const request = await fetch(`${API_url}/api/favs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,6 +34,14 @@ function CreateList({ monitorLists }) {
         body: JSON.stringify(body),
       });
       const data = await request.json();
+      if (data.error) {
+        (() => {
+          Modal.warning({
+            title: "Error",
+            content: "List name already exist",
+          });
+        })();
+      }
       return data;
     } catch (error) {
       console.log(error);
@@ -41,7 +50,7 @@ function CreateList({ monitorLists }) {
 
   const newItem = async (body, token, id) => {
     try {
-      await fetch(`http://localhost:5000/item/${id}`, {
+      await fetch(`${API_url}/item/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,6 +60,12 @@ function CreateList({ monitorLists }) {
       });
     } catch (error) {
       console.log(error);
+      ((info) => {
+        Modal.warning({
+          title: "Error",
+          content: info,
+        });
+      })(error);
     }
   };
 

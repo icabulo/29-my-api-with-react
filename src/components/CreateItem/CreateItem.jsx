@@ -3,6 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { ItemForm } from "../ItemForm";
 import PropTypes from "prop-types";
+import { API_url } from "../../../API_URL";
 
 function CreateItem({ idlist, monitorLists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,7 @@ function CreateItem({ idlist, monitorLists }) {
 
   const newItem = async (body, token, id) => {
     try {
-      await fetch(`http://localhost:5000/item/${id}`, {
+      await fetch(`${API_url}/item/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

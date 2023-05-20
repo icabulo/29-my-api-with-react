@@ -3,6 +3,7 @@ const { Search } = Input;
 import "./search-list.scss";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { API_url } from "../../../API_URL";
 
 function SearchList({ currentlist, DisplayFilteredList, clearFilter }) {
   const [clearBtnCheck, setClearBtnCheck] = useState(true);
@@ -10,7 +11,7 @@ function SearchList({ currentlist, DisplayFilteredList, clearFilter }) {
 
   const filterList = async (token, id) => {
     try {
-      const request = await fetch(`http://localhost:5000/api/favs/${id}`, {
+      const request = await fetch(`${API_url}/api/favs/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import { Button, Modal } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { API_url } from "../../../API_URL";
 
 function DeleteList({ idlist, monitorLists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,7 +14,7 @@ function DeleteList({ idlist, monitorLists }) {
 
   const deleteList = async (token, id) => {
     try {
-      await fetch(`http://localhost:5000/api/favs/${id}`, {
+      await fetch(`${API_url}/api/favs/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

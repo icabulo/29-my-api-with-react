@@ -9,7 +9,7 @@ const Login = () => {
 
   const onFinish = async (values) => {
     const { username: email, password } = values;
-    const request = await fetch(`${API_url}user/auth/local/login`, {
+    const request = await fetch(`${API_url}/user/auth/local/login`, {
       method: "POST",
       body: JSON.stringify({
         email,

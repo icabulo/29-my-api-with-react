@@ -1,6 +1,4 @@
 import { Collapse, Divider, Space } from "antd";
-// import { EditList } from "../EditList";
-// import { userLists } from "../../mockData/userData";
 import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
 import "./favs-list.scss";
@@ -10,16 +8,9 @@ import { DeleteList } from "../DeleteList";
 import PropTypes from "prop-types";
 
 const FavsList = ({ currentlist, monitorLists }) => {
-  const onChange = (key) => {
-    console.log(key);
-  };
-
-  // console.log("favs list component", currentlist);
-
   const genExtra = (idlist, monitorLists) => (
     <div className="panel-btns">
       <Space direction="horizontal">
-        {/* <EditList /> */}
         <DeleteList idlist={idlist} monitorLists={monitorLists} />
       </Space>
     </div>
@@ -47,9 +38,7 @@ const FavsList = ({ currentlist, monitorLists }) => {
       <Space direction="vertical">
         <CreateList monitorLists={monitorLists} />
         {myPanelLists.length > 0 ? (
-          <Collapse onChange={onChange} size="large">
-            {myPanelLists}
-          </Collapse>
+          <Collapse size="large">{myPanelLists}</Collapse>
         ) : (
           <h2>No lists yet! Create your first list</h2>
         )}

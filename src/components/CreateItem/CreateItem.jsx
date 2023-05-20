@@ -24,7 +24,7 @@ function CreateItem({ idlist, monitorLists }) {
 
   const newItem = async (body, token, id) => {
     try {
-      const request = await fetch(`http://localhost:5000/item/${id}`, {
+      await fetch(`http://localhost:5000/item/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,17 +32,12 @@ function CreateItem({ idlist, monitorLists }) {
         },
         body: JSON.stringify(body),
       });
-      const data = await request.json();
-      if (data) {
-        console.log("NEW ITEM CREATED!!", data);
-      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleSubmit = async (values) => {
-    console.log("handleSubmit...", values);
     await newItem(values, tokenLS, idlist);
     await monitorLists();
   };

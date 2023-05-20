@@ -22,7 +22,6 @@ function CreateList({ monitorLists }) {
   };
 
   const { token: tokenLS } = JSON.parse(localStorage.getItem("user"));
-  console.log("Token got from LS", tokenLS);
   const newList = async (body, token) => {
     try {
       const request = await fetch(`http://localhost:5000/api/favs`, {
@@ -34,9 +33,6 @@ function CreateList({ monitorLists }) {
         body: JSON.stringify(body),
       });
       const data = await request.json();
-      if (data) {
-        console.log("NEW LIST CREATED!!");
-      }
       return data;
     } catch (error) {
       console.log(error);
@@ -45,7 +41,7 @@ function CreateList({ monitorLists }) {
 
   const newItem = async (body, token, id) => {
     try {
-      const request = await fetch(`http://localhost:5000/item/${id}`, {
+      await fetch(`http://localhost:5000/item/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,17 +49,12 @@ function CreateList({ monitorLists }) {
         },
         body: JSON.stringify(body),
       });
-      const data = await request.json();
-      if (data) {
-        console.log("NEW ITEM CREATED!!");
-      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleSubmit = async (values) => {
-    console.log("handleSubmit...", values);
     const { name, title, description, link } = values;
     const listBody = { name, user_iduser: 1 };
     const itemBody = { title, description, link };

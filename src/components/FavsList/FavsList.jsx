@@ -1,5 +1,5 @@
 import { Collapse, Divider, Space } from "antd";
-import { EditList } from "../EditList";
+// import { EditList } from "../EditList";
 // import { userLists } from "../../mockData/userData";
 import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
@@ -16,11 +16,11 @@ const FavsList = ({ currentlist, monitorLists }) => {
 
   // console.log("favs list component", currentlist);
 
-  const genExtra = () => (
+  const genExtra = (idlist, monitorLists) => (
     <div className="panel-btns">
       <Space direction="horizontal">
-        <EditList />
-        <DeleteList />
+        {/* <EditList /> */}
+        <DeleteList idlist={idlist} monitorLists={monitorLists} />
       </Space>
     </div>
   );
@@ -28,7 +28,11 @@ const FavsList = ({ currentlist, monitorLists }) => {
   let myPanelLists = [];
   if (currentlist.length > 0) {
     myPanelLists = currentlist.map((list) => (
-      <Panel key={list.name} header={list.name} extra={genExtra()}>
+      <Panel
+        key={list.name}
+        header={`${list.name} (${list.idlist})`}
+        extra={genExtra(list.idlist, monitorLists)}
+      >
         <Space direction="vertical">
           <ListItems itemsArray={list.items} />
           <CreateItem />

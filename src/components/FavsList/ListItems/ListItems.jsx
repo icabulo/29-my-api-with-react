@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { EditItem } from "../../EditItem";
+// import { EditItem } from "../../EditItem";
 import "./list-items.scss";
 
 function ListItems({ itemsArray = [] }) {
@@ -15,7 +15,7 @@ function ListItems({ itemsArray = [] }) {
     <article key={item.title} className="item">
       <div className="item__title-container">
         <header className="item__header">{item.title}</header>
-        <EditItem />
+        {/* <EditItem /> */}
       </div>
       <section className="item__content">
         <p>{item.description}</p>

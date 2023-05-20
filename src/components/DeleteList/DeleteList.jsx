@@ -1,13 +1,37 @@
 import { Button, Modal } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function DeleteList() {
+function DeleteList({ idlist, monitorLists }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
+
+  const { token: tokenLS } = JSON.parse(localStorage.getItem("user"));
+
+  const deleteList = async (token, id) => {
+    try {
+      const request = await fetch(`http://localhost:5000/api/favs/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await request.json();
+      if (data) {
+        console.log("LIST DELETED!!", data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleOk = async () => {
+    await deleteList(tokenLS, idlist);
+    await monitorLists();
     setIsModalOpen(false);
   };
   const handleCancel = () => {
@@ -40,4 +64,10 @@ function DeleteList() {
     </div>
   );
 }
+
+DeleteList.propTypes = {
+  idlist: PropTypes.number,
+  monitorLists: PropTypes.func,
+};
+
 export default DeleteList;

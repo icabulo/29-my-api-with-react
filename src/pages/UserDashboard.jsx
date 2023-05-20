@@ -43,7 +43,11 @@ function UserDashboard() {
 
   return (
     <div>
-      <SearchList />
+      <SearchList
+        currentlist={userLists}
+        DisplayFilteredList={setUserLists}
+        clearFilter={getLists}
+      />
       <FavsList currentlist={userLists} monitorLists={getLists} />
     </div>
   );

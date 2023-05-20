@@ -29,13 +29,13 @@ const FavsList = ({ currentlist, monitorLists }) => {
   if (currentlist.length > 0) {
     myPanelLists = currentlist.map((list) => (
       <Panel
-        key={list.name}
-        header={`${list.name} (${list.idlist})`}
+        key={`${list.name}-${list.idlist}`}
+        header={`${list.name} (List id: ${list.idlist})`}
         extra={genExtra(list.idlist, monitorLists)}
       >
         <Space direction="vertical">
           <ListItems itemsArray={list.items} />
-          <CreateItem />
+          <CreateItem idlist={list.idlist} monitorLists={monitorLists} />
         </Space>
       </Panel>
     ));

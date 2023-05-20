@@ -1,13 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "../components/Login";
-import { FavsForm } from "../components/FavsForm";
+import { Home, UserDashboard } from "../pages";
+// import { ComponentTest } from "../pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div className="App">Let&apos;s use react to cosume my FAVS-API</div>
-    ),
+    element: <Home />,
     errorElement: <div> Hubo un error!!</div>,
   },
   {
@@ -16,8 +15,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/favs",
-    element: <FavsForm />,
+    element: <UserDashboard />,
   },
+  // {
+  //   path: "/component-test",
+  //   element: <ComponentTest />,
+  // },
 ]);
 
 const CustomRouter = () => <RouterProvider router={router}></RouterProvider>;

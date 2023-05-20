@@ -1,14 +1,15 @@
 import "./login.scss";
-import { Button, Checkbox, Form, Input, Modal } from "antd";
+import { Button, Checkbox, Form, Input, Modal, Space } from "antd";
 import { useNavigate } from "react-router-dom";
+import { Signup } from "../Signup";
+import { API_url } from "../../../API_URL";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    // console.log("Success:", values);
     const { username: email, password } = values;
-    const request = await fetch("http://localhost:5000/user/auth/local/login", {
+    const request = await fetch(`${API_url}/user/auth/local/login`, {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -19,7 +20,6 @@ const Login = () => {
       },
     });
     const data = await request.json();
-    // console.log("DATA", data);
     const { token } = data;
     // user file in localStorage will save error or token depending on the data from the request
     localStorage.setItem("user", JSON.stringify(data));
@@ -43,21 +43,13 @@ const Login = () => {
   return (
     <Form
       name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-      }}
       initialValues={{
-        remember: true,
+        remember: false,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      className="login-form"
     >
       <Form.Item
         label="User email"
@@ -85,27 +77,19 @@ const Login = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+      <Signup className="signup-btn" />
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+      <Space direction="horizontal">
+        <Form.Item name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Space>
     </Form>
   );
 };

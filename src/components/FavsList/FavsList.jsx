@@ -1,34 +1,32 @@
 import { Collapse, Divider, Space } from "antd";
-import { EditList } from "../EditList";
-import { userLists } from "../../mockData/userData";
 import { ListItems } from "./ListItems";
 const { Panel } = Collapse;
 import "./favs-list.scss";
 import { CreateList } from "../CreateList";
 import { CreateItem } from "../CreateItem";
 import { DeleteList } from "../DeleteList";
+import PropTypes from "prop-types";
 
-const FavsList = () => {
-  const onChange = (key) => {
-    console.log(key);
-  };
-
-  const genExtra = () => (
+const FavsList = ({ currentlist, monitorLists }) => {
+  const genExtra = (idlist, monitorLists) => (
     <div className="panel-btns">
       <Space direction="horizontal">
-        <EditList />
-        <DeleteList />
+        <DeleteList idlist={idlist} monitorLists={monitorLists} />
       </Space>
     </div>
   );
 
   let myPanelLists = [];
-  if (userLists.length > 0) {
-    myPanelLists = userLists.map((list) => (
-      <Panel key={list.name} header={list.name} extra={genExtra()}>
+  if (currentlist.length > 0) {
+    myPanelLists = currentlist.map((list) => (
+      <Panel
+        key={`${list.name}-${list.idlist}`}
+        header={`${list.name} (List id: ${list.idlist})`}
+        extra={genExtra(list.idlist, monitorLists)}
+      >
         <Space direction="vertical">
           <ListItems itemsArray={list.items} />
-          <CreateItem />
+          <CreateItem idlist={list.idlist} monitorLists={monitorLists} />
         </Space>
       </Panel>
     ));
@@ -38,16 +36,20 @@ const FavsList = () => {
     <div className="my-lists">
       <Divider orientation="left">My List Of Favorites</Divider>
       <Space direction="vertical">
-        <CreateList />
+        <CreateList monitorLists={monitorLists} />
         {myPanelLists.length > 0 ? (
-          <Collapse onChange={onChange} size="large">
-            {myPanelLists}
-          </Collapse>
+          <Collapse size="large">{myPanelLists}</Collapse>
         ) : (
-          <h2>Create an new list</h2>
+          <h2>No lists yet! Create your first list</h2>
         )}
       </Space>
     </div>
   );
 };
+
+FavsList.propTypes = {
+  currentlist: PropTypes.array,
+  monitorLists: PropTypes.func,
+};
+
 export default FavsList;

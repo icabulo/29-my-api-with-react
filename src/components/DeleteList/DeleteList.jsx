@@ -13,17 +13,13 @@ function DeleteList({ idlist, monitorLists }) {
 
   const deleteList = async (token, id) => {
     try {
-      const request = await fetch(`http://localhost:5000/api/favs/${id}`, {
+      await fetch(`http://localhost:5000/api/favs/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await request.json();
-      if (data) {
-        console.log("LIST DELETED!!", data);
-      }
     } catch (error) {
       console.log(error);
     }

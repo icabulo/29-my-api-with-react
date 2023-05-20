@@ -1,4 +1,5 @@
-import ComponentTest from "./ComponentTest";
+// import ComponentTest from "./ComponentTest";
 import UserDashboard from "./UserDashboard";
+import Home from "./Home";
 
-export { ComponentTest, UserDashboard };
+export { UserDashboard, Home };

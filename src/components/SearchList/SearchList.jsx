@@ -7,7 +7,6 @@ import { useState } from "react";
 function SearchList({ currentlist, DisplayFilteredList, clearFilter }) {
   const [clearBtnCheck, setClearBtnCheck] = useState(true);
   const { token: tokenLS } = JSON.parse(localStorage.getItem("user"));
-  // const [form] = Form.useForm();
 
   const filterList = async (token, id) => {
     try {
@@ -19,11 +18,7 @@ function SearchList({ currentlist, DisplayFilteredList, clearFilter }) {
         },
       });
       const data = await request.json();
-      if (data) {
-        console.log("LIST FOUND!", data);
-      }
       const validation = data.idlist;
-      console.log("API validation", data.idlist);
       return validation ? true : false;
     } catch (error) {
       console.log(error);
@@ -31,16 +26,11 @@ function SearchList({ currentlist, DisplayFilteredList, clearFilter }) {
   };
 
   const onSearch = async (value) => {
-    console.log(value);
-    // form.resetFields();
     const validation = await filterList(tokenLS, value);
-    console.log("onseach validation", validation);
     if (validation) {
-      console.log("current list", currentlist);
       const newList = [
         currentlist.find((item) => item.idlist === parseInt(value)),
       ];
-      console.log("NEw list", newList);
       DisplayFilteredList(newList);
       toggleClearBtn();
     } else {

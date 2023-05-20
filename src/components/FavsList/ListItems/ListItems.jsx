@@ -11,8 +11,8 @@ function ListItems({ itemsArray = [] }) {
     );
   }
 
-  const myItems = itemsArray.map((item) => (
-    <article key={item.title} className="item">
+  const myItems = itemsArray.map((item, index) => (
+    <article key={`${item.title}-${index}`} className="item">
       <div className="item__title-container">
         <header className="item__header">{item.title}</header>
         {/* <EditItem /> */}
